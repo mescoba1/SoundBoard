@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">SoundBoard</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="file_names">
+        <item>AngryCat</item>
+        <item>AngryDog</item>
+        <item>Cow</item>
+        <item>Elephant</item>
+        <item>Frog</item>
+        <item>Kitten</item>
+        <item>Parakeet</item>
+        <item>Raccoon</item>
+        <item>Rooster</item>
+        <item>T-Rex</item>
+    </string-array>
+</resources>
