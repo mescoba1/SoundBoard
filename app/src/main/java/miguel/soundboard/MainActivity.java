@@ -1,5 +1,7 @@
 package miguel.soundboard;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -17,9 +21,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
+    MediaPlayer kittenMP;
     private Spinner spinner[] = new Spinner[9];
     ArrayAdapter<CharSequence> adapter;
+
+   // final MediaPlayer  Kitten = MediaPlayer.create(this, R.raw.kitten);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +49,47 @@ public class MainActivity extends AppCompatActivity {
         addItemsOnSpinners();
 
         //media player
-        MediaPlayer elephant = MediaPlayer.create(this, R.raw.elephant);
-        MediaPlayer kitten = MediaPlayer.create(this, R.raw.kitten);
-        MediaPlayer rooster = MediaPlayer.create(this, R.raw.rooster);
+       /* MediaPlayer elephant = MediaPlayer.create(this, R.raw.elephant);
+        MediaPlayer rooster = MediaPlayer.create(this, R.raw.rooster); */
+
+        final MediaPlayer kittenMP= MediaPlayer.create(this,R.raw.kitten);
+        final MediaPlayer angrykittenMP = MediaPlayer.create(this,R.raw.angrycat);
+        final MediaPlayer angrydogMP = MediaPlayer.create(this,R.raw.angrydog);
+        final MediaPlayer cowMP = MediaPlayer.create(this,R.raw.cow);
+        final MediaPlayer elephantMP = MediaPlayer.create(this,R.raw.elephant);
+        final MediaPlayer frogMP = MediaPlayer.create(this,R.raw.frog);
+        final MediaPlayer parakeetMP = MediaPlayer.create(this,R.raw.parakeet);
+        final MediaPlayer pigMP = MediaPlayer.create(this,R.raw.pig);
+        final MediaPlayer racoonMP = MediaPlayer.create(this,R.raw.raccoon);
+        final MediaPlayer roosterMP = MediaPlayer.create(this,R.raw.rooster);
+        final MediaPlayer trexMP = MediaPlayer.create(this,R.raw.trex);
+
+     /*  final MediaPlayer kittenMP = MediaPlayer.create(this, R.raw.kitten);
+        b3.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                kittenMP.start();
+            }
+        });*/ //this way works
+
+
+       // Button b1 = (Button) findViewById(R.id.button);
+       b1.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                    //startActivity(new Intent("Play"));
+                //if(b1.equals(Kitten)){
+                    kittenMP.start();
+                }
+
+
+
+            //}
+        });
+
+
+
+
 
     }
 
@@ -72,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void addItemsOnSpinners(){
 
+        //each spinner references a button
         spinner[0] = (Spinner) findViewById(R.id.spinner);
         spinner[1] = (Spinner) findViewById(R.id.spinner2);
         spinner[2] = (Spinner) findViewById(R.id.spinner3);
@@ -81,6 +127,14 @@ public class MainActivity extends AppCompatActivity {
         spinner[6] = (Spinner) findViewById(R.id.spinner7);
         spinner[7] = (Spinner) findViewById(R.id.spinner8);
         spinner[8] = (Spinner) findViewById(R.id.spinner9);
+
+        //added these
+       /* Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.file_names, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);*/
+
+
 
         //spinner menu
         List list = new ArrayList();

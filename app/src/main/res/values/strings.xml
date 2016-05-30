@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">SoundBoard</string>
     <string name="action_settings">Settings</string>
+
+
+
     <string-array name="file_names">
         <item>AngryCat</item>
         <item>AngryDog</item>
