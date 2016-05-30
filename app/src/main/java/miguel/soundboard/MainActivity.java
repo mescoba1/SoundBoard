@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -16,9 +17,11 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private Spinner spinner[] = new Spinner[9];
+    private MediaPlayer media[] = new MediaPlayer[11];
+    Button buttons[] = new Button[9];
     ArrayAdapter<CharSequence> adapter;
 
     @Override
@@ -28,24 +31,22 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //create buttons
-        Button b1 = (Button) findViewById(R.id.button);
-        Button b2 = (Button) findViewById(R.id.button2);
-        Button b3 = (Button) findViewById(R.id.button3);
-        Button b4 = (Button) findViewById(R.id.button4);
-        Button b5 = (Button) findViewById(R.id.button5);
-        Button b6 = (Button) findViewById(R.id.button6);
-        Button b7 = (Button) findViewById(R.id.button7);
-        Button b8 = (Button) findViewById(R.id.button8);
-        Button b9 = (Button) findViewById(R.id.button9);
-
+        createButtons();
         addItemsOnSpinners();
+        createMedia();
 
-        //media player
-        MediaPlayer elephant = MediaPlayer.create(this, R.raw.elephant);
-        MediaPlayer kitten = MediaPlayer.create(this, R.raw.kitten);
-        MediaPlayer rooster = MediaPlayer.create(this, R.raw.rooster);
+        //link item in spinner menu to sound for corresponding button
+        /*for(int i = 0; i < 9; i++) {
+            spinner[i].setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    //media[position];
+                }
 
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+        }*/
     }
 
     @Override
@@ -68,6 +69,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
+        MediaPlayer temp = media[position];
+        //selection.setText(items[position]);
+    }
+
+    public void onNothingSelected(AdapterView<?> parent) {
+        //selection.setText("");
     }
 
     public void addItemsOnSpinners(){
@@ -103,5 +114,44 @@ public class MainActivity extends AppCompatActivity {
         for(int i = 0; i < 9; i++){
             spinner[i].setAdapter(dataAdapter);
         }
+    }
+    public void createButtons(){
+        //create buttons
+        buttons[0]  = (Button) findViewById(R.id.button);
+        buttons[1] = (Button) findViewById(R.id.button2);
+        buttons[2] = (Button) findViewById(R.id.button3);
+        buttons[3]  = (Button) findViewById(R.id.button4);
+        buttons[4]  = (Button) findViewById(R.id.button5);
+        buttons[5]  = (Button) findViewById(R.id.button6);
+        buttons[6]  = (Button) findViewById(R.id.button7);
+        buttons[7]  = (Button) findViewById(R.id.button8);
+        buttons[8]  = (Button) findViewById(R.id.button9);
+    }
+    public void createMedia(){
+        //media player
+        MediaPlayer elephant = MediaPlayer.create(this, R.raw.elephant);
+        MediaPlayer kitten = MediaPlayer.create(this, R.raw.kitten);
+        MediaPlayer rooster = MediaPlayer.create(this, R.raw.rooster);
+        MediaPlayer angryCat = MediaPlayer.create(this, R.raw.angrycat);
+        MediaPlayer angryDog = MediaPlayer.create(this, R.raw.angrydog);
+        MediaPlayer cow = MediaPlayer.create(this, R.raw.cow);
+        MediaPlayer frog = MediaPlayer.create(this, R.raw.frog);
+        MediaPlayer parakeet = MediaPlayer.create(this, R.raw.parakeet);
+        MediaPlayer pig = MediaPlayer.create(this, R.raw.pig);
+        MediaPlayer raccoon = MediaPlayer.create(this, R.raw.raccoon);
+        MediaPlayer trex = MediaPlayer.create(this, R.raw.trex);
+
+        //put sounds into one array
+        media[0] = angryCat;
+        media[1] = angryDog;
+        media[2] = cow;
+        media[3] = elephant;
+        media[4] = frog;
+        media[5] = kitten;
+        media[6] = parakeet;
+        media[7] = pig;
+        media[8] = raccoon;
+        media[9] = rooster;
+        media[10] = trex;
     }
 }
