@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayAdapter<CharSequence> adapter;
 
    // final MediaPlayer  Kitten = MediaPlayer.create(this, R.raw.kitten);
-
+//comment
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
