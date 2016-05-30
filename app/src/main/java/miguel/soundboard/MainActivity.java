@@ -1,7 +1,5 @@
 package miguel.soundboard;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -11,22 +9,24 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
-    MediaPlayer kittenMP;
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
     private Spinner spinner[] = new Spinner[9];
+    private MediaPlayer media[] = new MediaPlayer[11];
+    private List list = new ArrayList();
+    Button buttons[] = new Button[9];
+    private MediaPlayer currentSound[] = new MediaPlayer[9];
     ArrayAdapter<CharSequence> adapter;
 
-   // final MediaPlayer  Kitten = MediaPlayer.create(this, R.raw.kitten);
-//comment
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,61 +35,15 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //create buttons
-        Button b1 = (Button) findViewById(R.id.button);
-        Button b2 = (Button) findViewById(R.id.button2);
-        Button b3 = (Button) findViewById(R.id.button3);
-        Button b4 = (Button) findViewById(R.id.button4);
-        Button b5 = (Button) findViewById(R.id.button5);
-        Button b6 = (Button) findViewById(R.id.button6);
-        Button b7 = (Button) findViewById(R.id.button7);
-        Button b8 = (Button) findViewById(R.id.button8);
-        Button b9 = (Button) findViewById(R.id.button9);
-
+        createButtons();
         addItemsOnSpinners();
+        createMedia();
 
-        //media player
-       /* MediaPlayer elephant = MediaPlayer.create(this, R.raw.elephant);
-        MediaPlayer rooster = MediaPlayer.create(this, R.raw.rooster); */
+        //link item in spinner menu to sound for corresponding button
+        spinnerSelection();
 
-        final MediaPlayer kittenMP= MediaPlayer.create(this,R.raw.kitten);
-        final MediaPlayer angrykittenMP = MediaPlayer.create(this,R.raw.angrycat);
-        final MediaPlayer angrydogMP = MediaPlayer.create(this,R.raw.angrydog);
-        final MediaPlayer cowMP = MediaPlayer.create(this,R.raw.cow);
-        final MediaPlayer elephantMP = MediaPlayer.create(this,R.raw.elephant);
-        final MediaPlayer frogMP = MediaPlayer.create(this,R.raw.frog);
-        final MediaPlayer parakeetMP = MediaPlayer.create(this,R.raw.parakeet);
-        final MediaPlayer pigMP = MediaPlayer.create(this,R.raw.pig);
-        final MediaPlayer racoonMP = MediaPlayer.create(this,R.raw.raccoon);
-        final MediaPlayer roosterMP = MediaPlayer.create(this,R.raw.rooster);
-        final MediaPlayer trexMP = MediaPlayer.create(this,R.raw.trex);
-
-     /*  final MediaPlayer kittenMP = MediaPlayer.create(this, R.raw.kitten);
-        b3.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                kittenMP.start();
-            }
-        });*/ //this way works
-
-
-       // Button b1 = (Button) findViewById(R.id.button);
-       b1.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                    //startActivity(new Intent("Play"));
-                //if(b1.equals(Kitten)){
-                    kittenMP.start();
-                }
-
-
-
-            //}
-        });
-
-
-
-
+        //button listener
+        checkButtons();
 
     }
 
@@ -115,9 +69,18 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
+        MediaPlayer temp = media[position];
+        //selection.setText(items[position]);
+    }
+
+    public void onNothingSelected(AdapterView<?> parent) {
+        //selection.setText("");
+    }
+
     public void addItemsOnSpinners(){
 
-        //each spinner references a button
         spinner[0] = (Spinner) findViewById(R.id.spinner);
         spinner[1] = (Spinner) findViewById(R.id.spinner2);
         spinner[2] = (Spinner) findViewById(R.id.spinner3);
@@ -128,16 +91,7 @@ public class MainActivity extends AppCompatActivity {
         spinner[7] = (Spinner) findViewById(R.id.spinner8);
         spinner[8] = (Spinner) findViewById(R.id.spinner9);
 
-        //added these
-       /* Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.file_names, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);*/
-
-
-
         //spinner menu
-        List list = new ArrayList();
         list.add("Angry Cat");
         list.add("Angry Dog");
         list.add("Cow");
@@ -157,5 +111,213 @@ public class MainActivity extends AppCompatActivity {
         for(int i = 0; i < 9; i++){
             spinner[i].setAdapter(dataAdapter);
         }
+    }
+    public void createButtons(){
+        //create buttons
+        buttons[0]  = (Button) findViewById(R.id.button);
+        buttons[1] = (Button) findViewById(R.id.button2);
+        buttons[2] = (Button) findViewById(R.id.button3);
+        buttons[3]  = (Button) findViewById(R.id.button4);
+        buttons[4]  = (Button) findViewById(R.id.button5);
+        buttons[5]  = (Button) findViewById(R.id.button6);
+        buttons[6]  = (Button) findViewById(R.id.button7);
+        buttons[7]  = (Button) findViewById(R.id.button8);
+        buttons[8]  = (Button) findViewById(R.id.button9);
+    }
+    public void createMedia(){
+        //media player
+        MediaPlayer elephant = MediaPlayer.create(this, R.raw.elephant);
+        MediaPlayer kitten = MediaPlayer.create(this, R.raw.kitten);
+        MediaPlayer rooster = MediaPlayer.create(this, R.raw.rooster);
+        MediaPlayer angryCat = MediaPlayer.create(this, R.raw.angrycat);
+        MediaPlayer angryDog = MediaPlayer.create(this, R.raw.angrydog);
+        MediaPlayer cow = MediaPlayer.create(this, R.raw.cow);
+        MediaPlayer frog = MediaPlayer.create(this, R.raw.frog);
+        MediaPlayer parakeet = MediaPlayer.create(this, R.raw.parakeet);
+        MediaPlayer pig = MediaPlayer.create(this, R.raw.pig);
+        MediaPlayer raccoon = MediaPlayer.create(this, R.raw.raccoon);
+        MediaPlayer trex = MediaPlayer.create(this, R.raw.trex);
+
+        //put sounds into one array
+        media[0] = angryCat;
+        media[1] = angryDog;
+        media[2] = cow;
+        media[3] = elephant;
+        media[4] = frog;
+        media[5] = kitten;
+        media[6] = parakeet;
+        media[7] = pig;
+        media[8] = raccoon;
+        media[9] = rooster;
+        media[10] = trex;
+    }
+    public void setButtonSound(int i, int position){
+        currentSound[i] = media[position];
+    }
+    public void spinnerSelection(){
+        spinner[0].setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int index = spinner[0].getSelectedItemPosition();
+                Toast.makeText(getBaseContext(), "You chose " + list.get(index), Toast.LENGTH_SHORT).show();
+                currentSound[0] = media[index];
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spinner[1].setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int index = spinner[1].getSelectedItemPosition();
+                Toast.makeText(getBaseContext(), "You chose " + list.get(index), Toast.LENGTH_SHORT).show();
+                currentSound[1] = media[index];
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spinner[2].setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int index = spinner[2].getSelectedItemPosition();
+                Toast.makeText(getBaseContext(), "You chose " + list.get(index), Toast.LENGTH_SHORT).show();
+                currentSound[2] = media[index];
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spinner[3].setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int index = spinner[3].getSelectedItemPosition();
+                Toast.makeText(getBaseContext(), "You chose " + list.get(index), Toast.LENGTH_SHORT).show();
+                currentSound[3] = media[index];
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spinner[4].setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int index = spinner[4].getSelectedItemPosition();
+                Toast.makeText(getBaseContext(), "You chose " + list.get(index), Toast.LENGTH_SHORT).show();
+                currentSound[4] = media[index];
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spinner[5].setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int index = spinner[5].getSelectedItemPosition();
+                Toast.makeText(getBaseContext(), "You chose " + list.get(index), Toast.LENGTH_SHORT).show();
+                currentSound[5] = media[index];
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spinner[6].setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int index = spinner[6].getSelectedItemPosition();
+                Toast.makeText(getBaseContext(), "You chose " + list.get(index), Toast.LENGTH_SHORT).show();
+                currentSound[6] = media[index];
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spinner[7].setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int index = spinner[7].getSelectedItemPosition();
+                Toast.makeText(getBaseContext(), "You chose " + list.get(index), Toast.LENGTH_SHORT).show();
+                currentSound[7] = media[index];
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spinner[8].setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int index = spinner[8].getSelectedItemPosition();
+                Toast.makeText(getBaseContext(), "You chose " + list.get(index), Toast.LENGTH_SHORT).show();
+                currentSound[8] = media[index];
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+    public void checkButtons(){
+        buttons[0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(), "playing button 0", Toast.LENGTH_SHORT).show();
+                currentSound[0].start();
+            }
+        });
+        buttons[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(), "playing button 1", Toast.LENGTH_SHORT).show();
+                currentSound[1].start();
+            }
+        });
+        buttons[2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(), "playing button 2", Toast.LENGTH_SHORT).show();
+                currentSound[2].start();
+            }
+        });
+        buttons[3].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(), "playing button 3", Toast.LENGTH_SHORT).show();
+                currentSound[3].start();
+            }
+        });
+        buttons[4].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(), "playing button 4", Toast.LENGTH_SHORT).show();
+                currentSound[4].start();
+            }
+        });
+        buttons[5].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(), "playing button 5", Toast.LENGTH_SHORT).show();
+                currentSound[5].start();
+            }
+        });
+        buttons[6].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(), "playing button 6", Toast.LENGTH_SHORT).show();
+                currentSound[6].start();
+            }
+        });
+        buttons[7].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(), "playing button 7", Toast.LENGTH_SHORT).show();
+                currentSound[7].start();
+            }
+        });
+        buttons[8].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getBaseContext(), "playing button 8", Toast.LENGTH_SHORT).show();
+                currentSound[8].start();
+            }
+        });
     }
 }
