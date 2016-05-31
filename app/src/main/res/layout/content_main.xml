@@ -220,13 +220,48 @@
         android:layout_alignLeft="@+id/spinner6"
         android:layout_alignStart="@+id/spinner6" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
+    <MediaController
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Stop"
-        android:id="@+id/button_stop"
+        android:id="@+id/mediaController"
         android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New ToggleButton"
+        android:id="@+id/toggleButton"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Record:"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/button3"
+        android:layout_alignEnd="@+id/button3" />
+
+    <MediaController
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mediaController2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Play"
+        android:id="@+id/button10"
+        android:layout_alignTop="@+id/toggleButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -234,20 +269,10 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Play"
-        android:id="@+id/button_play"
-        android:layout_alignBottom="@+id/button_stop"
-        android:layout_alignLeft="@+id/button2"
-        android:layout_alignStart="@+id/button2" />
+        android:text="PAUSE"
+        android:id="@+id/button11"
+        android:layout_alignTop="@+id/button10"
+        android:layout_centerHorizontal="true" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pause"
-        android:id="@+id/button_pause"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/button3"
-        android:layout_toEndOf="@+id/button_stop" />
 
 </RelativeLayout>
