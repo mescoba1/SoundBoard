@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private MediaPlayer media[] = new MediaPlayer[11];
     private List list = new ArrayList();
     Button buttons[] = new Button[9];
+    Button pause[] = new Button[9];
     private MediaPlayer currentSound[] = new MediaPlayer[9];
     private ToggleButton recordToggle;
     private boolean recording = false, stopRecord = false;
@@ -52,12 +53,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         createButtons();
         addItemsOnSpinners();
         createMedia();
+        createPause();
 
         //link item in spinner menu to sound for corresponding button
         spinnerSelection();
 
         //button listeners
         checkButtons();
+
+        //pause listener
+        checkPause();
+
+
 
         recordToggle = (ToggleButton) findViewById(R.id.toggleButton);
         createRecord();
@@ -150,6 +157,18 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         buttons[6]  = (Button) findViewById(R.id.button7);
         buttons[7]  = (Button) findViewById(R.id.button8);
         buttons[8]  = (Button) findViewById(R.id.button9);
+    }
+    public void createPause(){
+        pause[0] = (Button) findViewById(R.id.button11);
+        pause[1] = (Button) findViewById(R.id.button11);
+        pause[2] = (Button) findViewById(R.id.button11);
+        pause[3] = (Button) findViewById(R.id.button11);
+        pause[4] = (Button) findViewById(R.id.button11);
+        pause[5] = (Button) findViewById(R.id.button11);
+        pause[6] = (Button) findViewById(R.id.button11);
+        pause[7] = (Button) findViewById(R.id.button11);
+        pause[8] = (Button) findViewById(R.id.button11);
+
     }
     public void createMedia(){
         //media player
@@ -347,6 +366,65 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
     }
+    public void checkPause(){
+        pause[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getBaseContext(), "playing button 8", Toast.LENGTH_SHORT).show();
+                currentSound[1].pause();
+            }
+        });
+       /* pause[2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getBaseContext(), "playing button 8", Toast.LENGTH_SHORT).show();
+                currentSound[2].pause();
+            }
+        });
+        pause[3].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getBaseContext(), "playing button 8", Toast.LENGTH_SHORT).show();
+                currentSound[3].pause();
+            }
+        });
+        pause[4].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getBaseContext(), "playing button 8", Toast.LENGTH_SHORT).show();
+                currentSound[4].pause();
+            }
+        });
+        pause[5].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getBaseContext(), "playing button 8", Toast.LENGTH_SHORT).show();
+                currentSound[5].pause();
+            }
+        });
+        pause[6].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getBaseContext(), "playing button 8", Toast.LENGTH_SHORT).show();
+                currentSound[6].pause();
+            }
+        });
+        pause[7].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getBaseContext(), "playing button 8", Toast.LENGTH_SHORT).show();
+                currentSound[7].pause();
+            }
+        });
+        pause[8].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getBaseContext(), "playing button 8", Toast.LENGTH_SHORT).show();
+                currentSound[8].pause();
+            }
+        });*/
+
+    }
 
     public void createRecord(){
         recordToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -391,14 +469,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
     }
-    public void checkPause(){
+    /*public void checkPause1(){
         pauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pauseSound();
+               currentSound[1].pause();
             }
         });
-    }
+    }*/
+
 
     public void playSound(){
         mPlayer = new MediaPlayer();
@@ -411,10 +490,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
-    public void pauseSound(){
-        mPlayer.release();
-        mPlayer = null;
-    }
+
 
 
 }
