@@ -24,8 +24,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private MediaPlayer media[] = new MediaPlayer[11];
     private List list = new ArrayList();
     Button buttons[] = new Button[9];
+   /* Button play= (Button) findViewById(R.id.button_play);
+    Button stop= (Button) findViewById(R.id.button_stop);*/
+    //Button pause_button= (Button) findViewById(R.id.button_pause);
     private MediaPlayer currentSound[] = new MediaPlayer[9];
     ArrayAdapter<CharSequence> adapter;
+
 
 
     @Override
@@ -44,7 +48,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         //button listener
         checkButtons();
-
+        //pause listener
+      //  pauseButton();
     }
 
     @Override
@@ -71,8 +76,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
     public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
-        MediaPlayer temp = media[position];
+         MediaPlayer temp = media[position];
         //selection.setText(items[position]);
+
     }
 
     public void onNothingSelected(AdapterView<?> parent) {
@@ -124,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         buttons[7]  = (Button) findViewById(R.id.button8);
         buttons[8]  = (Button) findViewById(R.id.button9);
     }
+
     public void createMedia(){
         //media player
         MediaPlayer elephant = MediaPlayer.create(this, R.raw.elephant);
@@ -320,4 +327,43 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             }
         });
     }
+  /*  public void pauseButton(){
+        pause_button.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Toast.makeText(getBaseContext(), "pausing", Toast.LENGTH_SHORT).show();
+
+                currentSound[1].pause();
+            }
+        });
+        play.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                //for(int i=0;i<currentSound.length;i++){
+                    currentSound[8].start();
+                //}
+
+            }
+        });
+        pause.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+               // for(int i=0;i<currentSound.length;i++){
+                    currentSound[8].pause();
+               // }
+
+            }
+        });
+        stop.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+              //  for(int i=0;i<currentSound.length;i++){
+                    currentSound[8].stop();
+               // }
+
+            }
+        });
+    }*/
+
+
 }
