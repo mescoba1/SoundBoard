@@ -79,7 +79,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         checkPlay();
         checkPause();
-        //trying to push
     }
 
     @Override
