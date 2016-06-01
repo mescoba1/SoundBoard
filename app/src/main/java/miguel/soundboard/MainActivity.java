@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         image = (ImageView) findViewById(R.id.imageView);
         //image.setImageResource(R.mipmap.elephant);
-
+//
         createButtons();
         addItemsOnSpinners();
         createMedia();
