@@ -77,8 +77,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         recordToggle = (Button) findViewById(R.id.button12);
         checkRecord();
 
-        //checkPlay();
-        //checkPause();
+        checkPlay();
+        checkPause();
 
     }
 
