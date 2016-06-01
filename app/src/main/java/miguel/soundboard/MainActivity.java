@@ -1,9 +1,19 @@
 package miguel.soundboard;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -13,6 +23,7 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -31,11 +42,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private boolean startRecording = true, stopRecord = false;
     private Button playButton, pauseButton;
     boolean recorded = false;
-
     private static final String LOG_TAG = "AudioRecordTest";
     private static String mFileName = null;
     private MediaRecorder mRecorder = null;
     private MediaPlayer   mPlayer = null;
+    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 29;
+    ImageView image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +55,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        //mContext = this;
         playButton = (Button) findViewById(R.id.button10);
         pauseButton = (Button) findViewById(R.id.button11);
         mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
         mFileName += "/audiorecordtest.3gp";
+
+        image = (ImageView) findViewById(R.id.imageView);
+        image.setImageResource(R.mipmap.angrycat);
 
         createButtons();
         addItemsOnSpinners();
@@ -134,10 +150,10 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         buttons[1] = (Button) findViewById(R.id.button2);
         buttons[2] = (Button) findViewById(R.id.button3);
         buttons[3]  = (Button) findViewById(R.id.button4);
-        buttons[4]  = (Button) findViewById(R.id.button7);
+        buttons[4]  = (Button) findViewById(R.id.button5);
         buttons[5]  = (Button) findViewById(R.id.button6);
-        buttons[6]  = (Button) findViewById(R.id.button8);
-        buttons[7]  = (Button) findViewById(R.id.button6);
+        buttons[6]  = (Button) findViewById(R.id.button7);
+        buttons[7]  = (Button) findViewById(R.id.button8);
         buttons[8]  = (Button) findViewById(R.id.button9);
     }
     public void createMedia(){
@@ -235,6 +251,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
             }
         });
+
         spinner[6].setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 int index = spinner[6].getSelectedItemPosition();
@@ -337,7 +354,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     public void checkRecord() {
-
         recordToggle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -353,13 +369,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         System.out.println("almost to record");
         mRecorder = new MediaRecorder();
         System.out.println("1");
+        mRecorder.reset();
         mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         System.out.println("2");
-        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
+        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
         System.out.println("before fname");
         mRecorder.setOutputFile(mFileName);
         System.out.println("after fname");
-        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
         System.out.println("preparing to record");
         try {
             mRecorder.prepare();
@@ -426,4 +443,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mPlayer.release();
         mPlayer = null;
     }
+
+
 }

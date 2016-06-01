@@ -151,7 +151,8 @@
         android:layout_toRightOf="@+id/button2"
         android:layout_toEndOf="@+id/button2"
         android:layout_marginLeft="47dp"
-        android:layout_marginStart="47dp" />
+        android:layout_marginStart="47dp"
+        android:spinnerMode="dialog" />
 
     <Spinner
         android:layout_width="wrap_content"
@@ -163,7 +164,8 @@
         android:clickable="true"
         android:layout_toStartOf="@+id/spinner5"
         android:layout_alignRight="@+id/spinner"
-        android:layout_alignEnd="@+id/spinner" />
+        android:layout_alignEnd="@+id/spinner"
+        android:spinnerMode="dialog" />
 
     <Spinner
         android:layout_width="wrap_content"
@@ -176,7 +178,8 @@
         android:clickable="true"
         android:entries="@array/file_names"
         android:layout_alignLeft="@+id/spinner2"
-        android:layout_alignStart="@+id/spinner2" />
+        android:layout_alignStart="@+id/spinner2"
+        android:spinnerMode="dialog" />
 
     <Spinner
         android:layout_width="wrap_content"
@@ -188,7 +191,8 @@
         android:layout_alignEnd="@+id/button6"
         android:clickable="true"
         android:layout_alignLeft="@+id/spinner3"
-        android:layout_alignStart="@+id/spinner3" />
+        android:layout_alignStart="@+id/spinner3"
+        android:spinnerMode="dropdown" />
 
     <Spinner
         android:layout_width="wrap_content"
@@ -197,7 +201,8 @@
         android:layout_below="@+id/button7"
         android:clickable="true"
         android:layout_alignRight="@+id/spinner4"
-        android:layout_alignEnd="@+id/spinner4" />
+        android:layout_alignEnd="@+id/spinner4"
+        android:spinnerMode="dialog" />
 
     <Spinner
         android:layout_width="wrap_content"
@@ -208,7 +213,8 @@
         android:layout_alignEnd="@+id/button8"
         android:clickable="true"
         android:layout_alignLeft="@+id/spinner5"
-        android:layout_alignStart="@+id/spinner5" />
+        android:layout_alignStart="@+id/spinner5"
+        android:spinnerMode="dialog" />
 
     <Spinner
         android:layout_width="wrap_content"
@@ -219,23 +225,6 @@
         android:clickable="true"
         android:layout_alignLeft="@+id/spinner6"
         android:layout_alignStart="@+id/spinner6" />
-
-    <MediaController
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/mediaController"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-
-    <MediaController
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/mediaController2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -263,6 +252,19 @@
         android:id="@+id/button12"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_below="@+id/button11"
+        android:layout_toStartOf="@+id/spinner6"
+        android:layout_marginRight="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="33dp"
+        android:layout_above="@+id/button2"
+        android:layout_toLeftOf="@+id/spinner6"
+        android:layout_marginBottom="17dp" />
 
 
 </RelativeLayout>
