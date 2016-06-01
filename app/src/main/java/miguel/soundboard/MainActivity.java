@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private static String mFileName = null;
     private MediaRecorder mRecorder = null;
     private MediaPlayer   mPlayer = null;
-    private static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 29;
     ImageView image;
 
     @Override
@@ -62,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mFileName += "/audiorecordtest.3gp";
 
         image = (ImageView) findViewById(R.id.imageView);
-        image.setImageResource(R.mipmap.angrycat);
+        image.setImageResource(R.mipmap.elephant);
 
         createButtons();
         addItemsOnSpinners();
