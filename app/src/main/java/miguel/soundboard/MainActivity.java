@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private MediaRecorder mRecorder = null;
     private MediaPlayer   mPlayer = null;
     ImageView image;
-//
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mFileName += "/audiorecordtest.3gp";
 
         image = (ImageView) findViewById(R.id.imageView);
-        image.setImageResource(R.mipmap.elephant);
+        //image.setImageResource(R.mipmap.elephant);
 
         createButtons();
         addItemsOnSpinners();
