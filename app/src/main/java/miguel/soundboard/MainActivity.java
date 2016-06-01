@@ -61,8 +61,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         mFileName += "/audiorecordtest.3gp";
 
         image = (ImageView) findViewById(R.id.imageView);
-        //image.setImageResource(R.mipmap.elephant);
-//
+
         createButtons();
         addItemsOnSpinners();
         createMedia();
@@ -291,6 +290,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             public void onClick(View v) {
                 //Toast.makeText(getBaseContext(), "playing button 0", Toast.LENGTH_SHORT).show();
                 currentSound[0].start();
+                updateClipart(0);
             }
         });
         buttons[1].setOnClickListener(new View.OnClickListener() {
@@ -298,6 +298,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             public void onClick(View v) {
                 //Toast.makeText(getBaseContext(), "playing button 1", Toast.LENGTH_SHORT).show();
                 currentSound[1].start();
+                updateClipart(1);
             }
         });
         buttons[2].setOnClickListener(new View.OnClickListener() {
@@ -305,6 +306,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             public void onClick(View v) {
                 //Toast.makeText(getBaseContext(), "playing button 2", Toast.LENGTH_SHORT).show();
                 currentSound[2].start();
+                updateClipart(2);
             }
         });
         buttons[3].setOnClickListener(new View.OnClickListener() {
@@ -312,6 +314,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             public void onClick(View v) {
                 //Toast.makeText(getBaseContext(), "playing button 3", Toast.LENGTH_SHORT).show();
                 currentSound[3].start();
+                updateClipart(3);
             }
         });
         buttons[4].setOnClickListener(new View.OnClickListener() {
@@ -319,6 +322,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             public void onClick(View v) {
                 //Toast.makeText(getBaseContext(), "playing button 4", Toast.LENGTH_SHORT).show();
                 currentSound[4].start();
+                updateClipart(4);
             }
         });
         buttons[5].setOnClickListener(new View.OnClickListener() {
@@ -326,6 +330,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             public void onClick(View v) {
                 //Toast.makeText(getBaseContext(), "playing button 5", Toast.LENGTH_SHORT).show();
                 currentSound[5].start();
+                updateClipart(5);
             }
         });
         buttons[6].setOnClickListener(new View.OnClickListener() {
@@ -333,6 +338,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             public void onClick(View v) {
                 //Toast.makeText(getBaseContext(), "playing button 6", Toast.LENGTH_SHORT).show();
                 currentSound[6].start();
+                updateClipart(6);
             }
         });
         buttons[7].setOnClickListener(new View.OnClickListener() {
@@ -340,6 +346,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             public void onClick(View v) {
                 //Toast.makeText(getBaseContext(), "playing button 7", Toast.LENGTH_SHORT).show();
                 currentSound[7].start();
+                updateClipart(7);
             }
         });
         buttons[8].setOnClickListener(new View.OnClickListener() {
@@ -347,6 +354,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             public void onClick(View v) {
                 //Toast.makeText(getBaseContext(), "playing button 8", Toast.LENGTH_SHORT).show();
                 currentSound[8].start();
+                updateClipart(8);
             }
         });
     }
@@ -440,6 +448,45 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     private void stopPlaying() {
         mPlayer.release();
         mPlayer = null;
+    }
+
+    private void updateClipart(int select){
+        int index = spinner[select].getSelectedItemPosition();
+        switch (index){
+            case 0:
+                image.setImageResource(R.mipmap.angrycat);
+                break;
+            case 1:
+                image.setImageResource(R.mipmap.angrydog);
+                break;
+            case 2:
+                image.setImageResource(R.mipmap.cow);
+                break;
+            case 3:
+                image.setImageResource(R.mipmap.elephant);
+                break;
+            case 4:
+                image.setImageResource(R.mipmap.frog);
+                break;
+            case 5:
+                image.setImageResource(R.mipmap.kitten);
+                break;
+            case 6:
+                image.setImageResource(R.mipmap.parakeet);
+                break;
+            case 7:
+                image.setImageResource(R.mipmap.pig);
+                break;
+            case 8:
+                image.setImageResource(R.mipmap.raccoon);
+                break;
+            case 9:
+                image.setImageResource(R.mipmap.rooster);
+                break;
+            case 10:
+                image.setImageResource(R.mipmap.trex);
+                break;
+        }
     }
 
 
